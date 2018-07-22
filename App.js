@@ -23,10 +23,7 @@ export default class App extends Component {
     return (
       <NativeRouter>
         <View style={styles.container}>
-          {/* <View style={styles.oval} />
-        <View style={styles.boxBody}>
-          <View style={styles.box} />
-        </View> */}
+
           {
             routes.map(item =>
               <Route key={item.key} exact={item.exact} path={item.path} render={(props) => <item.component {...props} />
@@ -63,43 +60,5 @@ const styles = StyleSheet.create({
     borderColor: '#EDF3F9',
     opacity: .7
   },
-  boxBody: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  box: {
-    width: 100,
-    height: 100,
-    backgroundColor: 'red',
-    opacity: 0.2,
-    // Test Border Types
-    borderWidth: 20,
-
-    //# Border [right,left,bottom,top] Color
-    borderColor: 'gray',
-    borderStartColor: 'yellow',
-    borderEndColor: 'blue',
-    // backfaceVisibility: 'hide'
-    // borderRightColor : '',
-    // borderLeftColor: '',
-    // borderTopColor: '',
-    // borderBottomColor: '',
-
-    //# Border Top [Start, Left, Right, End] Radius
-    // borderTopStartRadius: 100 / 2,
-    // borderTopLeftRadius: 50,
-    // borderTopRightRadius: 50,
-    // borderTopEndRadius: 50,
-
-    //# Border Bottom [Start, Left, Right, End] Radius
-    // borderTopStartRadius: 100 / 2,
-    // borderTopLeftRadius: 50,
-    // borderTopRightRadius: 50,
-    // borderTopEndRadius: 50,
-
-
-
-  }
+  
 });

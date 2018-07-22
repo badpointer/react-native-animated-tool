@@ -1,24 +1,27 @@
-import React, {PureComponent} from 'react'
-import {View, StyleSheet ,Text, ScrollView, TouchableHighlight} from 'react-native';
-
+import React, { PureComponent } from 'react'
+import { View, StyleSheet, Text, ScrollView, TouchableHighlight } from 'react-native';
+import {Logo} from '../../components'
 
 class Home extends PureComponent {
 
     render() {
-        console.log('render',this);
-        const {homeComponent,button,text} = styles;
+        console.log('render', this);
+        const { homeComponent, button, text } = styles;
         return (
-            <View style={homeComponent}>
-                <TouchableHighlight onPress={()=> this.props.history.push('/headerfloat')} underlayColor="white" >
-                    <View style={button}>
-                        <Text style={text}>Header Animation Timing</Text>
-                    </View>
-                </TouchableHighlight> 
-                <TouchableHighlight onPress={()=> this.props.history.push('/headerspring')} underlayColor="white" >
-                    <View style={button}>
-                        <Text style={text}>Header Animation Spring</Text>
-                    </View>
-                </TouchableHighlight> 
+            <View style={{flex: 1}}>
+                <Logo />
+                <View style={homeComponent}>
+                    <TouchableHighlight onPress={() => this.props.history.push('/headerfloat')} underlayColor="white" >
+                        <View style={button}>
+                            <Text style={text}>Header Animation Timing</Text>
+                        </View>
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={() => this.props.history.push('/headerspring')} underlayColor="white" >
+                        <View style={button}>
+                            <Text style={text}>Header Animation Spring</Text>
+                        </View>
+                    </TouchableHighlight>
+                </View>
             </View>
         );
     }
@@ -30,7 +33,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        paddingTop: 60
+        
     },
     button: {
         width: 150,
@@ -39,9 +42,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#2196F3'
     },
     text: {
-        padding: 20,
-        color: 'white'
-    }
+        padding: 10,
+        color: 'white',
+        fontWeight: '500',
+        lineHeight: 20
+    },
+
 });
 
 export {
