@@ -1,37 +1,38 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Animated, TextInput,Text } from 'react-native';
+import { View, StyleSheet, TouchableHighlight, Text, Animated, Easing } from 'react-native';
 
 import { ButtonHighlight, CurvedHeader } from '../../components'
 
-class FloatUpHeader extends Component {
+class SpringUpHeader extends Component {
 
     state = {
-        headerAnimation: new Animated.Value(0),
-        transitonYValue: -150,
-        transitionDuration: 800
+        headerAnimation: new Animated.Value(0)
     }
 
     startAnimation = () => {
-        Animated.timing(
+        Animated.spring(
             this.state.headerAnimation,
             {
-                toValue: this.state.transitonYValue,
-                duration: this.state.transitionDuration
+                toValue: -150,
+                friction: 5,    // Controls "Bounciness"/overshoot
+                tension: 10,
             }
         ).start(() => {
-            Animated.timing(
+            Animated.spring(
                 this.state.headerAnimation,
                 {
                     toValue: 0,
-                    duration: this.state.transitionDuration
+                    friction: 5,    // Controls "Bounciness"/overshoot
+                    tension: 10,    // Controls Speed. Defaut 40,
+                    // speed: 12,      // Controls speed of the animation. Default 12,
+                    // bounciness: 8,  // Controls bounciness. Default 8
                 }
             ).start();
         });
     }
 
-
     render() {
-        const { buttonContainers, button, text } = styles;
+        const { header, buttonContainers, button, text } = styles;
 
         const headerAnimatedStyle = {
             transform: [
@@ -46,9 +47,6 @@ class FloatUpHeader extends Component {
                 <Animated.View style={[headerAnimatedStyle]} >
                     <CurvedHeader />
                 </Animated.View>
-
-
-                {/* Input Here */}
 
                 <View style={styles.animationButtonContainer}>
                     <ButtonHighlight text="Start Animation" onClick={this.startAnimation} />
@@ -66,6 +64,16 @@ class FloatUpHeader extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    header: {
+        height: 65,
+        borderBottomLeftRadius: 30,
+        borderBottomRightRadius: 30,
+        borderLeftWidth: 1.5,
+        borderBottomWidth: 2.5,
+        borderRightWidth: 1.5,
+        borderColor: '#EDF3F9',
+        opacity: .7
     },
     buttonContainers: {
         flex: 1,
@@ -85,12 +93,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        flexWrap: 'wrap'
     },
-
-
+    playButton: {
+        backgroundColor: 'green'
+    },
+    playFont: {
+        color: 'white',
+        padding: 20
+    }
 });
 
 export {
-    FloatUpHeader
+    SpringUpHeader
 }
