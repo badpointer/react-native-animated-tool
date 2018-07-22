@@ -8,7 +8,9 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
-
+import { NativeRouter, Route } from 'react-router-native';
+import { routes } from './src/route/routes';
+// import {routes} from './src/route/routes';
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -19,13 +21,20 @@ const instructions = Platform.select({
 export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.oval} />
+      <NativeRouter>
+        <View style={styles.container}>
+          {/* <View style={styles.oval} />
         <View style={styles.boxBody}>
           <View style={styles.box} />
-
+        </View> */}
+          {
+            routes.map(item =>
+              <Route key={item.key} exact={item.exact} path={item.path} render={(props) => <item.component {...props} />
+              } />
+            )
+          }
         </View>
-      </View>
+      </NativeRouter>
     );
   }
 }
@@ -67,7 +76,7 @@ const styles = StyleSheet.create({
     opacity: 0.2,
     // Test Border Types
     borderWidth: 20,
-  
+
     //# Border [right,left,bottom,top] Color
     borderColor: 'gray',
     borderStartColor: 'yellow',
@@ -89,7 +98,7 @@ const styles = StyleSheet.create({
     // borderTopLeftRadius: 50,
     // borderTopRightRadius: 50,
     // borderTopEndRadius: 50,
-    
+
 
 
   }
